@@ -1,0 +1,303 @@
+/* ========================================================== */
+/* СТИЛИ ГЛАВНОГО МЕНЮ И ПЛАНЕТ ДУГОЙ В КОСМОСЕ (menu.css)      */
+/* ========================================================== */
+
+/* ЭКРАН 1: Приветствие и ввод игроков */
+.welcome-container {
+    background: rgba(15, 15, 35, 0.85);
+    border: 2px solid rgba(0, 219, 222, 0.3);
+    backdrop-filter: blur(12px);
+    padding: 40px;
+    border-radius: 25px;
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 219, 222, 0.2);
+}
+
+.game-title {
+    font-size: 32px;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, #00dbde, #fc00ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.game-subtitle {
+    font-size: 16px;
+    color: #a0a0c0;
+    margin-bottom: 25px;
+}
+
+#players-inputs-container {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    padding-right: 5px;
+}
+
+.player-input-row {
+    margin-bottom: 12px;
+}
+
+.player-input {
+    width: 100%;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.player-input:focus {
+    border-color: #00dbde;
+}
+
+.menu-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+
+/* ========================================================== */
+/* ЭКРАН 2: ОТКРЫТЫЙ КОСМОС И ПЛАНЕТЫ ПО ДУГЕ (ОРБИТЕ)        */
+/* ========================================================== */
+
+.categories-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 30px 20px;
+    box-sizing: border-box;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(15, 15, 35, 0.7);
+    backdrop-filter: blur(10px);
+    padding: 12px 28px;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 700px;
+    border: 1px solid rgba(0, 219, 222, 0.3);
+    font-size: 18px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    margin-bottom: 20px;
+}
+
+.categories-container h2 {
+    font-size: 26px;
+    text-shadow: 0 2px 15px rgba(0, 219, 222, 0.6);
+    margin-bottom: 40px;
+    z-index: 10;
+    letter-spacing: 1px;
+}
+
+/* Космическое пространство для планет */
+.planets-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    pointer-events: none; /* Пропускаем клики сквозь контейнер */
+}
+
+/* Каждая планета без рамок, парит по дуге */
+.planet-card {
+    position: absolute;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    cursor: pointer;
+    pointer-events: auto; /* Включаем клики на планету */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: spaceFloat 6s ease-in-out infinite;
+}
+
+/* Выстраиваем огромные планеты левее и выше */
+.planet-card[data-category="saturn"] {
+    top: 0%;   /* Поднимаем сильно вверх */
+    left: -10%;  /* Сдвигаем влево */
+}
+
+.planet-card[data-category="earth"] {
+    top: 0%;
+    left: 15%;
+}
+
+.planet-card[data-category="venus"] {
+    top: 0%;
+    left: 40%;
+}
+
+.planet-card[data-category="jupiter"] {
+    top: 0%;
+    left: 65%;
+}
+
+/* Эффект при наведении на планету */
+.planet-card:hover {
+    transform: scale(1.2) translateY(-10px);
+}
+
+.planet-img-wrapper {
+    width: 600px;
+    height: 600px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.planet-img-wrapper img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    /* Неоновое свечение вокруг планет */
+    filter: drop-shadow(0 0 25px rgba(0, 219, 222, 0.6));
+    transition: filter 0.4s;
+}
+
+.planet-card:hover .planet-img-wrapper img {
+    filter: drop-shadow(0 0 40px rgba(252, 0, 255, 0.9));
+}
+
+.planet-card h3 {
+    font-size: 50px;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(0, 219, 222, 0.8);
+    margin-bottom: 2px;
+}
+
+.topic-name {
+    font-size: 15px;
+    color: #00dbde;
+    font-weight: bold;
+    text-shadow: 0 0 8px rgba(0, 219, 222, 0.5);
+    background: rgba(11, 11, 26, 0.6);
+    padding: 4px 12px;
+    border-radius: 12px;
+    backdrop-filter: blur(5px);
+}
+
+/* Плавное покачивание планет на орбите */
+@keyframes spaceFloat {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-10px) rotate(2deg);
+    }
+}
+
+/* Адаптивность для мобильных экранов */
+@media (max-width: 768px) {
+    .planets-grid {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+        height: auto;
+        margin-top: 20px;
+        pointer-events: auto;
+    }
+    
+    .planet-card {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        animation: none;
+    }
+    
+    .categories-container {
+        height: auto;
+        justify-content: flex-start;
+    }
+}
+/* ========================================================== */
+/* АНИМАЦИЯ ПОЛЕТА РАКЕТЫ car.png И ГИПЕРПРЫЖКА               */
+/* ========================================================== */
+
+.space-rocket {
+    position: absolute;
+    bottom: -80px;
+    left: 50%;
+    transform: translateX(-50%) rotate(0deg);
+    z-index: 100;
+    pointer-events: none;
+    transition: none;
+}
+
+.rocket-img {
+    width: 80px; /* Настройте размер под вашу картинку (например, 70-100px) */
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 20px rgba(255, 165, 0, 0.8)) drop-shadow(0 0 10px #00dbde);
+}
+
+/* Класс запуска зигзагообразного полета */
+.space-rocket.flying {
+    animation: rocketZigzagFlight 1.5s ease-in-out forwards;
+}
+
+/* Эффект гиперпрыжка для картинки */
+.space-rocket.hyperjump {
+    animation: hyperjumpEffect 0.4s ease-in forwards;
+}
+
+@keyframes rocketZigzagFlight {
+    0% {
+        bottom: -80px;
+        left: 50%;
+        transform: translateX(-50%) rotate(0deg);
+    }
+    30% {
+        bottom: 30%;
+        left: 25%;
+        transform: translateX(-50%) rotate(-25deg);
+    }
+    60% {
+        bottom: 55%;
+        left: 75%;
+        transform: translateX(-50%) rotate(30deg);
+    }
+    100% {
+        bottom: var(--target-y);
+        left: var(--target-x);
+        transform: translateX(-50%) rotate(0deg);
+    }
+}
+
+@keyframes hyperjumpEffect {
+    0% {
+        transform: translateX(-50%) scale(1);
+    }
+    50% {
+        transform: translateX(-50%) scale(2.5) rotate(360deg);
+        filter: drop-shadow(0 0 50px #00dbde) drop-shadow(0 0 80px #fc00ff);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-50%) scale(0.1);
+        opacity: 0;
+    }
+}

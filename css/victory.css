@@ -1,0 +1,158 @@
+/* ========================================================== */
+/* СТИЛИ ФИНАЛЬНОГО ЭКРАНА ПОБЕДЫ И САЛЮТОВ (victory.css)     */
+/* ========================================================== */
+
+/* ЭКРАН 5: Победа и таблица лидеров */
+#screen-victory {
+    background: radial-gradient(circle at center, #1b1b3a 0%, #0b0b1a 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.victory-container {
+    background: rgba(15, 15, 35, 0.9);
+    border: 2px solid rgba(0, 219, 222, 0.4);
+    backdrop-filter: blur(15px);
+    padding: 40px;
+    border-radius: 25px;
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 0 50px rgba(0, 219, 222, 0.3), 0 15px 40px rgba(0, 0, 0, 0.8);
+    position: relative;
+    z-index: 2;
+    animation: victoryZoom 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.victory-container h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, #00dbde, #fc00ff, #ff416c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 30px rgba(252, 0, 255, 0.5);
+    animation: titleGlow 2s infinite alternate;
+}
+
+.victory-container h2 {
+    font-size: 20px;
+    color: #a0a0c0;
+    margin-bottom: 25px;
+    font-weight: 400;
+}
+
+.leaderboard-wrapper {
+    max-height: 250px;
+    overflow-y: auto;
+    margin-bottom: 30px;
+    padding-right: 5px;
+}
+
+#leaderboard-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Строка игрока в таблице лидеров */
+.leaderboard-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 14px 20px;
+    border-radius: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.leaderboard-item:nth-child(1) {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 140, 0, 0.2));
+    border-color: #ffd700;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+    font-weight: bold;
+    transform: scale(1.02);
+}
+
+.leaderboard-item:nth-child(2) {
+    background: linear-gradient(135deg, rgba(192, 192, 192, 0.15), rgba(128, 128, 128, 0.15));
+    border-color: #c0c0c0;
+}
+
+.leaderboard-item:nth-child(3) {
+    background: linear-gradient(135deg, rgba(205, 127, 50, 0.15), rgba(139, 69, 19, 0.15));
+    border-color: #cd7f32;
+}
+
+.player-rank {
+    color: #00dbde;
+    margin-right: 10px;
+}
+
+.player-score-badge {
+    background: rgba(0, 219, 222, 0.2);
+    padding: 4px 12px;
+    border-radius: 20px;
+    color: #00dbde;
+    font-weight: bold;
+}
+
+
+/* Анимации салютов и свечения */
+@keyframes victoryZoom {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes titleGlow {
+    from { filter: drop-shadow(0 0 5px rgba(252, 0, 255, 0.4)); }
+    to { filter: drop-shadow(0 0 20px rgba(0, 219, 222, 0.8)); }
+}
+
+/* Эффект космических салютов на фоне */
+#screen-victory::before,
+#screen-victory::after {
+    content: '✨';
+    position: absolute;
+    font-size: 30px;
+    animation: spaceFireworks 3s infinite ease-in-out;
+    z-index: 1;
+    opacity: 0;
+}
+
+#screen-victory::before {
+    top: 15%;
+    left: 15%;
+    animation-delay: 0s;
+}
+
+#screen-victory::after {
+    bottom: 20%;
+    right: 15%;
+    animation-delay: 1.5s;
+    content: '🌟';
+}
+
+@keyframes spaceFireworks {
+    0% {
+        transform: scale(0.2) translateY(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.5) translateY(-30px);
+        opacity: 1;
+        text-shadow: 0 0 20px #00dbde, 0 0 40px #fc00ff;
+    }
+    100% {
+        transform: scale(0.8) translateY(-60px);
+        opacity: 0;
+    }
+}

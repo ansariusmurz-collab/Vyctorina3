@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Космическая Викторина — Своя Игра</title>
+    <!-- Подключение CSS файлов -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/game.css">
+    <link rel="stylesheet" href="css/victory.css">
+	<link rel="stylesheet" href="css/splash.css">
+</head>
+<body>
+<!-- Интерактивная заставка -->
+<section id="screen-splash" class="game-screen active">
+    <div class="splash-container">
+        <div id="splash-prompt" class="splash-step">
+            <p class="press-any-key">Нажмите на любую кнопку или кликните мышью</p>
+        </div>
+        <div id="splash-school" class="splash-step hidden-step">
+            <img src="assets/images/school_logo.png" alt="Логотип школы" class="splash-logo">
+        </div>
+        <div id="splash-author" class="splash-step hidden-step">
+            <span class="by-text">by</span>
+            <img src="assets/images/my_logo.svg" alt="Мусульманин и технологии" class="splash-logo">
+        </div>
+    </div>
+</section>
+
+   
+
+
+    <!-- ======================================================== -->
+    <!-- ЭКРАН 2: Выбор тем (Планеты) -->
+    <!-- ======================================================== -->
+    <section id="screen-categories" class="game-screen">
+        <div class="categories-container">
+            <div class="top-bar">
+                <span id="current-player-turn">Ходит: <b id="active-player-name">—</b></span>
+                <span id="current-player-score">Счет: <b id="active-player-points">0</b></span>
+            </div>
+            
+            <h2>Выберите планету и категорию вопроса</h2>
+            
+            <div class="planets-grid">
+                <!-- Сатурн (Русский язык) -->
+                <div class="planet-card" data-category="saturn">
+                    <div class="planet-img-wrapper">
+                        <img src="assets/images/planet_saturn.png" alt="Сатурн">
+                    </div>
+                    <h3></h3>
+                    <p class="topic-name"></p>
+                </div>
+				<!-- РАКЕТА ДЛЯ АНИМАЦИИ ПОЛЕТА (Картинка car.png) -->
+            <div id="space-rocket" class="space-rocket hidden">
+                <img src="assets/images/car.png" alt="Космическая ракета" class="rocket-img">
+            </div>
+
+                <!-- Земля (Окружающий мир) -->
+                <div class="planet-card" data-category="earth">
+                    <div class="planet-img-wrapper">
+                        <img src="assets/images/planet_earth.png" alt="Земля">
+                    </div>
+                    <h3></h3>
+                    <p class="topic-name"></p>
+                </div>
+
+                <!-- Венера (Литература) -->
+                <div class="planet-card" data-category="venus">
+                    <div class="planet-img-wrapper">
+                        <img src="assets/images/planet_venus.png" alt="Венера">
+                    </div>
+                    <h3></h3>
+                    <p class="topic-name"></p>
+                </div>
+
+                <!-- Юпитер (Математика) -->
+                <div class="planet-card" data-category="jupiter">
+                    <div class="planet-img-wrapper">
+                        <img src="assets/images/planet_jupiter.png" alt="Юпитер">
+                    </div>
+                    <h3></h3>
+                    <p class="topic-name"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+  <!-- ======================================================== -->
+    <!-- ЭКРАН 3: Уровень (Приземление на планету и метеоры 10-50) -->
+    <!-- ======================================================== -->
+    <section id="screen-game" class="game-screen">
+        <div class="planet-surface-container">
+            <button id="btn-back-to-planets" class="btn-back">← К планетам</button>
+            
+            <div class="meteors-container">
+                <!-- Метеоры (10-50 очков) -->
+                <div class="meteor-wrapper" data-points="10">
+                    <div class="meteor-points-top">10 очков</div>
+                    <div class="meteor"><img src="assets/images/metior.png" alt="Метеор 10" class="meteor-img"></div>
+                </div>
+                <div class="meteor-wrapper" data-points="20">
+                    <div class="meteor-points-top">20 очков</div>
+                    <div class="meteor"><img src="assets/images/metior.png" alt="Метеор 20" class="meteor-img"></div>
+                </div>
+                <div class="meteor-wrapper" data-points="40">
+                    <div class="meteor-points-top">30 очков</div>
+                    <div class="meteor"><img src="assets/images/meteor2.png" alt="Метеор 40" class="meteor-img"></div>
+                </div>
+                <div class="meteor-wrapper" data-points="50">
+                    <div class="meteor-points-top">40 очков</div>
+                    <div class="meteor"><img src="assets/images/meteor3.png" alt="Метеор 50" class="meteor-img"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Эффект взрыва теперь здесь, поверх экрана метеоров! -->
+        <div id="explosion-effect" class="explosion-overlay hidden">
+            <div class="explosion-flash">️</div>
+        </div>
+    </section>
+    <!-- ======================================================== -->
+    <!-- ЭКРАН 4: Вопрос и варианты ответа (с анимацией взрыва) -->
+    <!-- ======================================================== -->
+    <section id="screen-question" class="game-screen">
+        <div class="question-container">
+            <!-- Эффект падения метеора и взрыва -->
+            <div id="explosion-effect" class="explosion-overlay hidden">
+                <div class="explosion-flash"></div>
+            </div>
+            
+            <div id="question-box" class="question-box-content">
+                <div class="question-header-info">
+                    <span id="question-category-badge">Категория</span>
+                    <span id="question-points-badge">На кону: <span id="q-points">0</span> очков</span>
+                </div>
+                
+                <h3 id="question-text">Текст вопроса загружается...</h3>
+                
+                <div class="answers-grid">
+                    <button class="answer-btn" data-index="0">Вариант 1</button>
+                    <button class="answer-btn" data-index="1">Вариант 2</button>
+                    <button class="answer-btn" data-index="2">Вариант 3</button>
+                    <button class="answer-btn" data-index="3">Вариант 4</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ======================================================== -->
+    <!-- ЭКРАН 5: Финальный экран победы и таблица лидеров -->
+    <!-- ======================================================== -->
+    <section id="screen-victory" class="game-screen">
+        <div class="victory-container">
+            <h1>🎉 Миссия завершена! 🎉</h1>
+            <h2>Итоговая таблица лидеров галактики</h2>
+            
+            <div class="leaderboard-wrapper">
+                <ul id="leaderboard-list">
+                    <!-- Сюда JavaScript динамически выведет список игроков и их баллы -->
+                </ul>
+            </div>
+            
+            <button id="btn-restart" class="btn btn-primary">Сыграть снова 🚀</button>
+        </div>
+    </section>
+
+
+   <script src="js/game.state.js"></script>
+    <script src="js/questions.data.js"></script>
+    <script src="js/script.question.js"></script> <!-- Сначала скрипт вопросов (чтобы loadQuestion успела создаться) -->
+    <script src="js/script.meteors.js"></script>  <!-- Потом скрипт метеоров -->
+    <script src="js/script.main.js"></script>
+	<script src="js/script.splash.js"></script>
+</body>
+</html>

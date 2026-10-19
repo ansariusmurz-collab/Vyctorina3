@@ -1,0 +1,378 @@
+/* ========================================================== */
+/* СТИЛИ УРОВНЯ, МЕТЕОРОВ И ВОПРОСОВ (game.css)               */
+/* ========================================================== */
+
+/* ЭКРАН 3: Уровень (приземление и метеоры) */
+.planet-surface-container {
+    text-align: center;
+    max-width: 1100px; /* Увеличили ширину, чтобы все 5 метеоров поместились в 1 ряд */
+    width: 100%;
+    padding: 30px 20px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* Фикс для кнопки "Назад" */
+.btn-back {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(15, 15, 35, 0.8);
+    border: 1px solid rgba(0, 219, 222, 0.4);
+    color: #ffffff;
+    padding: 10px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 15px;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.btn-back:hover {
+    background: rgba(0, 219, 222, 0.2);
+    border-color: #00dbde;
+}
+
+/* ЭКРАН 3: Уровень (приземление и метеоры) */
+#screen-game {
+    align-items: flex-start; /* Поднимаем содержимое к самому верху экрана */
+    padding-top: 40px;
+}
+
+.planet-surface-container {
+    text-align: center;
+    max-width: 1200px;
+    width: 100%;
+    padding: 0 20px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* Кнопка назад слева */
+.btn-back {
+    position: absolute;
+    top: 0;
+    left: 20px;
+    background: rgba(15, 15, 35, 0.85);
+    border: 1px solid rgba(0, 219, 222, 0.4);
+    color: #ffffff;
+    padding: 10px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 15px;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.btn-back:hover {
+    background: rgba(0, 219, 222, 0.2);
+    border-color: #00dbde;
+}
+
+/* Контейнер метеоров у самого верха */
+.meteors-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 25px;
+    flex-wrap: nowrap;
+    margin-top: 10px; /* Минимальный отступ от верхнего края */
+    width: 100%;
+}
+
+/* /* ========================================================== */
+/* СТИЛИ МЕТЕОРОВ СО СПРАЙТОМ metior.png И ТЕКСТОМ СВЕРХУ        */
+/* ========================================================== */
+
+.meteors-container {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Центрируем по вертикали */
+    gap: 30px;           /* Расстояние между метеорами */
+    flex-wrap: wrap;
+    
+    /* 👇 ТУТ МЕНЯТЬ ПОЗИЦИЮ (ОСТУП СВЕРХУ) */
+    margin-top: 150px;   /* Увеличивайте, чтобы опустить ниже; уменьшайте (или ставьте отрицательное), чтобы поднять выше */
+}
+
+/* Общий контейнер для текста и метеора */
+.meteor-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.meteor-wrapper:hover {
+    transform: translateY(-10px) scale(1.05);
+}
+
+/* Текст с очками СВЕРХУ над метеором */
+.meteor-points-top {
+    font-size: 18px; /* Размер текста с очками */
+    font-weight: bold;
+    color: #00dbde;
+    background: rgba(15, 15, 35, 0.8);
+    padding: 6px 14px;
+    border-radius: 15px;
+    border: 1px solid rgba(0, 219, 222, 0.4);
+    margin-bottom: 12px;
+    text-shadow: 0 0 10px rgba(0, 219, 222, 0.6);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    white-space: nowrap;
+}
+
+/* Блок спрайта метеора */
+.meteor {
+    background: transparent;
+    border: none;
+    
+    /* 👇 ТУТ МЕНЯТЬ РАЗМЕР МЕТЕОРОВ */
+    width: 200px;  /* Ширина метеора (можно поставить 180px, 200px и т.д.) */
+    height: 200px; /* Высота метеора (должна быть равна ширине для ровного квадрата) */
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.meteor-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 0 15px rgba(255, 100, 50, 0.6));
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.meteor-wrapper:hover .meteor-img {
+    filter: drop-shadow(0 0 25px rgba(255, 165, 0, 0.9));
+    transform: rotate(10deg);
+}
+
+
+/* ЭКРАН 4: Вопрос и варианты ответа */
+.question-container {
+    max-width: 700px;
+    width: 100%;
+    background: rgba(15, 15, 35, 0.9);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 35px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
+    position: relative;
+    overflow: hidden;
+}
+
+.question-header-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    font-size: 16px;
+    color: #00dbde;
+}
+
+#question-points-badge {
+    background: rgba(0, 219, 222, 0.15);
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 219, 222, 0.4);
+    font-weight: bold;
+}
+
+#question-text {
+    font-size: 22px;
+    line-height: 1.4;
+    margin-bottom: 35px;
+    color: #ffffff;
+    text-align: center;
+}
+
+.answers-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.answer-btn {
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    padding: 15px 20px;
+    font-size: 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.answer-btn:hover {
+    background: rgba(0, 219, 222, 0.2);
+    border-color: #00dbde;
+    transform: translateY(-2px);
+}
+
+/* ========================================================== */
+/* ЭФФЕКТ УДАРНОЙ ВОЛНЫ И ПЕРЕХОД НА ВОПРОС                   */
+/* ========================================================== */
+
+.explosion-overlay {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 100, 0, 0.9) 40%, rgba(255, 0, 0, 0.7) 70%, transparent 100%);
+    border-radius: 50%;
+    z-index: 999;
+    pointer-events: none;
+    opacity: 0;
+}
+
+/* ========================================================== */
+/* ПЛАВНО ЗАТУХАЮЩАЯ УДАРНАЯ ВОЛНА                            */
+/* ========================================================== */
+
+.explosion-overlay.active-wave {
+    animation: shockwaveFade 1.5s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+.explosion-overlay.active-wave .explosion-flash {
+    animation: flashFade 1.5s ease-out forwards;
+}
+
+@keyframes shockwaveFade {
+    0% {
+        width: 10px;
+        height: 10px;
+        opacity: 0.8;
+        box-shadow: 0 0 0 0 rgba(255, 65, 108, 0.9), 0 0 0 0 rgba(255, 165, 0, 0.8);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        width: 350vw;
+        height: 350vw;
+        opacity: 0; /* Плавно растворяется в ноль */
+        box-shadow: 0 0 0 100vw rgba(11, 11, 26, 0.95);
+    }
+}
+
+@keyframes flashFade {
+    0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 0;
+    }
+    30% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 1;
+    }
+    70% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.4);
+        opacity: 0; /* Текст плавно гаснет */
+    }
+}
+
+
+/* ========================================================== */
+/* ПОЛЕТ РАКЕТЫ car.png (ПРЯМОЙ) И ЗУМ ЭКРАНА                  */
+/* ========================================================== */
+
+.space-rocket {
+    position: absolute;
+    bottom: -80px;
+    left: 50%;
+    transform: translateX(-50%) rotate(0deg);
+    z-index: 100;
+    pointer-events: none;
+    transition: none;
+}
+
+.rocket-img {
+    width: 80px;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 20px rgba(255, 165, 0, 0.8)) drop-shadow(0 0 10px #00dbde);
+}
+
+/* Прямой полет ракеты к целевым координатам */
+.space-rocket.flying {
+    animation: rocketDirectFlight 1s ease-in-out forwards;
+}
+
+@keyframes rocketDirectFlight {
+    0% {
+        bottom: -80px;
+        left: 50%;
+        transform: translateX(-50%) rotate(0deg);
+    }
+    100% {
+        bottom: var(--target-y);
+        left: var(--target-x);
+        transform: translateX(-50%) rotate(0deg);
+    }
+}
+
+/* Эффект приближения (зума) всего экрана к планете за 0.5 секунд */
+.categories-container.zoom-in {
+    animation: screenZoomToPlanet 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes screenZoomToPlanet {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(3.5);
+        opacity: 0;
+    }
+}
+/* ========================================================== */
+/* АНИМАЦИЯ ПАДЕНИЯ МЕТЕОРА ВНИЗ ПО ЦЕНТРУ                     */
+/* ========================================================== */
+
+.meteor-wrapper.falling {
+    position: fixed;
+    z-index: 1000;
+    pointer-events: none;
+    animation: meteorFallDown 0.6s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards;
+}
+
+@keyframes meteorFallDown {
+    0% {
+        top: var(--start-y);
+        left: var(--start-x);
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    }
+    100% {
+        /* Падает строго в центр низа экрана */
+        top: 85vh;
+        left: 50vw;
+        transform: translate(-50%, -50%) scale(1.6) rotate(360deg);
+        opacity: 0.9;
+    }
+}
+/* Правильный ответ — подсвечиваем зеленым */
+.answer-btn.correct {
+    background-color: #28a745 !important;
+    border-color: #28a745 !important;
+    color: #fff !important;
+    box-shadow: 0 0 15px rgba(40, 167, 69, 0.8);
+}
+
+/* Неправильный ответ — подсвечиваем красным */
+.answer-btn.incorrect {
+    background-color: #dc3545 !important;
+    border-color: #dc3545 !important;
+    color: #fff !important;
+    box-shadow: 0 0 15px rgba(220, 53, 69, 0.8);
+}

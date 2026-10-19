@@ -1,0 +1,102 @@
+/* ========================================================== */
+/* ИНТЕРАКТИВНАЯ ЗАСТАВКА НА ЧЕРНОМ ФОНЕ (splash.css)         */
+/* ========================================================== */
+
+/* Общие стили для анимаций заставки */
+#screen-splash {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background: #000000 !important;
+    overflow: hidden;
+    z-index: 9999;
+}
+
+.splash-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.splash-step {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 1.2s ease, transform 1.2s ease;
+    opacity: 1;
+    transform: scale(1);
+}
+
+.splash-step.hidden-step {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.95);
+}
+
+/* Приглашение к нажатию */
+.press-any-key {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    animation: pulsePrompt 2s infinite ease-in-out;
+}
+
+@keyframes pulsePrompt {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.9; transform: scale(1.02); }
+}
+
+/* ========================================================== */
+/* НАСТРОЙКА РАЗМЕРА SVG ЛОГОТИПА И ШКОЛЫ                    */
+/* ========================================================== */
+
+/* Контейнер для вашего логотипа */
+#splash-author {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 1. Логотип школы */
+.school-logo {
+    width: 150px !important;
+    height: auto !important;
+    object-fit: contain;
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
+}
+
+/* 2. ВАШ SVG-ЛОГОТИП (Принудительно увеличиваем) */
+.author-logo, 
+#splash-author img,
+#splash-author svg {
+    width: 650px !important;  /* 👈 ЗДЕСЬ МЕНЯЙТЕ РАЗМЕР (например: 600px, 700px, 800px) */
+    height: auto !important;  /* Автоматическая высота сохранит пропорции SVG */
+    max-width: 90vw !important; /* Чтобы на небольших экранах не вылезал за границы */
+    filter: drop-shadow(0 0 35px rgba(197, 160, 89, 0.6)); /* Золотистое свечение */
+}
+
+.by-text {
+    font-size: 28px;
+    font-style: italic;
+    color: #00dbde;
+    margin-bottom: 20px;
+    letter-spacing: 4px;
+    text-shadow: 0 0 12px rgba(0, 219, 222, 0.8);
+    font-family: 'Montserrat', sans-serif;
+}
+}
+
+#screen-splash.hidden {
+    display: none !important;
+}
